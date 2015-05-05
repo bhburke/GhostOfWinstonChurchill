@@ -3,6 +3,21 @@ var DrinkTracker = require('./drinkTracker.js');
 var PowerHour = require('./powerHour.js');
 var request = require('request');
 
+
+/**Making heroku happy **/
+var net = require('net');
+var server = net.createServer(function(c) { //'connection' listener
+  console.log('client connected');
+  c.on('end', function() {
+    console.log('client disconnected');
+  });
+  c.write('hello\r\n');
+  c.pipe(c);
+});
+server.listen(process.env.PORT || 8000, function() { //'listening' listener
+  console.log('server bound');
+});
+
 var ROOM = 'jc4l'
 var EMAIL = 'junkyard0001@aol.com'
 var PASSWORD = 'jewcrewforlife'
