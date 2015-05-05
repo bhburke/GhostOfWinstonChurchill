@@ -1,0 +1,30 @@
+{
+  "name": "GhostOfWinstonChurchill",
+  "version": "1.0.0",
+  "description": "The ghost of Winston Churchill has come back to make your plug.dj sessions 1000% groovier",
+  "main": "bot.js",
+  "scripts": {
+    "test": "node bot.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://git.heroku.com/cryptic-forest-8844.git"
+  },
+  "keywords": [
+    "plug",
+    "dj",
+    "bot",
+    "winston",
+    "churchill",
+    "ghost"
+  ],
+  "author": "BB Fresh",
+  "license": "ISC",
+  "dependencies": {
+    "plugapi": "^3.1.4",
+    "require": "^2.4.17"
+  },
+  "scripts": {
+    "start": "node GhostOfWinstonChurchill/bot.js"
+  }
+}
