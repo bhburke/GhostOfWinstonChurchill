@@ -4,7 +4,7 @@
   "description": "The ghost of Winston Churchill has come back to make your plug.dj sessions 1000% groovier",
   "main": "bot.js",
   "scripts": {
-    "test": "node bot.js"
+    "start": "node GhostOfWinstonChurchill/bot.js"
   },
   "repository": {
     "type": "git",
@@ -22,9 +22,7 @@
   "license": "ISC",
   "dependencies": {
     "plugapi": "^3.1.4",
+    "request": "^2.55.0",
     "require": "^2.4.17"
-  },
-  "scripts": {
-    "start": "node GhostOfWinstonChurchill/bot.js"
   }
 }
