@@ -13,6 +13,10 @@ var server = net.createServer(function(c) { //'connection' listener
   });
   c.write('hello\r\n');
   c.pipe(c);
+  c.on("error", function(err){
+    console.log("Caught server socket error: ")''
+    console.log(err.stack);
+  });
 });
 server.listen(process.env.PORT || 8000, function() { //'listening' listener
   console.log('server bound');
