@@ -5,18 +5,11 @@ var request = require('request');
 
 
 /**Making heroku happy **/
-var net = require('net');
-var server = net.createServer(function(c) { //'connection' listener
+var http = require('http');
+var server = http.createServer(function(request, response) { //'connection' listener
   console.log('client connected');
-  c.on('end', function() {
-    console.log('client disconnected');
-  });
-  c.write('hello\r\n');
-  c.pipe(c);
-  c.on("error", function(err){
-    console.log("Caught server socket error: ");
-    console.log(err.stack);
-  });
+  res.writeHead(200, {'Content-Type': 'text/plain'});
+  res.end('Greetings from the Ghost of Winston Churchill!');
 });
 server.listen(process.env.PORT || 8000, function() { //'listening' listener
   console.log('server bound');
@@ -28,9 +21,11 @@ var PASSWORD = 'jewcrewforlife'
 var BOT_USERNAME = 'GhostOfWinstonChurchill'
 var BOT_USER_ID = '6186643'
 
-var BIG_UPS_IMAGE_URLS =  ['http://i.imgur.com/EZTfraw.jpg', 'http://i.imgur.com/khQoeOm.jpg', 'http://i.imgur.com/2aN0Xrq.jpg', 'http://i.imgur.com/QNMiqyS.jpg'];
+var BIG_UPS_IMAGE_URLS =  ['http://i.imgur.com/EZTfraw.jpg', 'http://i.imgur.com/khQoeOm.jpg', 'http://i.imgur.com/2aN0Xrq.jpg', 
+                            'http://i.imgur.com/QNMiqyS.jpg', 'http://i.imgur.com/MfmHOYb.gif'];
     
-var SHOTS_FIRED_URLS = ['http://i.imgur.com/hYad5tP.jpg', 'http://i.imgur.com/lGUZpWR.jpg', 'http://i.imgur.com/rfkY7.gif', 'http://i.imgur.com/EAt5kzd.jpg'];
+var SHOTS_FIRED_URLS = ['http://i.imgur.com/hYad5tP.jpg', 'http://i.imgur.com/lGUZpWR.jpg', 'http://i.imgur.com/rfkY7.gif', 
+                            'http://i.imgur.com/EAt5kzd.jpg'];
 
 var complimentArray=["you rule!", "keep killing it!", "you're a real good Jew!",
                             "I'd marry you if I was still alive! :heart_eyes:", "I served England because of good people like you!",
