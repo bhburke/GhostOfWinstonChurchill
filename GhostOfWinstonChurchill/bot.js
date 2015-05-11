@@ -8,8 +8,8 @@ var request = require('request');
 var http = require('http');
 var server = http.createServer(function(request, response) { //'connection' listener
   console.log('client connected');
-  response.writeHead(200, {'Content-Type': 'text/plain'});
   response.setHeader("Access-Control-Allow-Origin", "*");
+  response.writeHead(200, {'Content-Type': 'text/plain'});
   response.end('Greetings from the Ghost of Winston Churchill!');
 });
 server.listen(process.env.PORT || 8000, function() { //'listening' listener
