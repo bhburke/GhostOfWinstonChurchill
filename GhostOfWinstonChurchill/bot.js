@@ -22,11 +22,15 @@ var PASSWORD = 'jewcrewforlife'
 var BOT_USERNAME = 'GhostOfWinstonChurchill'
 var BOT_USER_ID = '6186643'
 
+var BOT_REFRESH_URL = 'http://bbfresh.com/summon/'
+
 var BIG_UPS_IMAGE_URLS =  ['http://i.imgur.com/EZTfraw.jpg', 'http://i.imgur.com/khQoeOm.jpg', 'http://i.imgur.com/2aN0Xrq.jpg', 
                             'http://i.imgur.com/QNMiqyS.jpg', 'http://i.imgur.com/MfmHOYb.gif'];
     
 var SHOTS_FIRED_URLS = ['http://i.imgur.com/hYad5tP.jpg', 'http://i.imgur.com/lGUZpWR.jpg', 'http://i.imgur.com/rfkY7.gif', 
                             'http://i.imgur.com/EAt5kzd.jpg'];
+
+var JAM_ALERT_IMAGE_URLS = ['http://i.imgur.com/qlBqNCA.gif']
 
 var complimentArray=["you rule!", "keep killing it!", "you're a real good Jew!",
                             "I'd marry you if I was still alive! :heart_eyes:", "I served England because of good people like you!",
@@ -43,6 +47,10 @@ var complimentArray=["you rule!", "keep killing it!", "you're a real good Jew!",
                              "you're swell!", "I want to be you!", "nobody has it all figured out. You're doing great!", "I'm proud of you!", 
                              "if you were a dog I'd give you a treat!", "you are cool!", "I'm glad you're alive!", "I'm long on your value!", 
                              "if you were a stock I'd invest!" ]
+
+var jamAlertMessages = ["Oh shit!! Sit your asses down for this JC4L #JAM right here!!!!", ":sound: :sound: :sound: #JAMALERT :sound: :sound: :sound:",
+                            ":ear: What's this I hear? Uh oh, sounds like it's THE MOTHERFUCKING JAM!!!!!", ":raised_hands: God bless you %dj for laying down this #HOT #JAM #JAMALERT",
+                            ":boom: Hold on to your nuts, %dj is dropping a #JAM in the JC4L DJ booth!! :boom:"]
 
 var bacSort = function(a,b) { return parseFloat(b.bac) - parseFloat(a.bac) } ;
 
@@ -66,7 +74,9 @@ var reconnect = function() { bot.connect(ROOM); };
 bot.on('close', reconnect);
 bot.on('error', reconnect);
 
-
+/**Refresh self timeout**/
+var refreshBotTimeout = function() { request.post(BOT_REFRESH_URL) };
+bot.on('chat', refreshBotTimeout);
 
 /**Autowoot**/
 var woot = function() { bot.woot() };
@@ -143,16 +153,53 @@ function giveBigUps(data) {
     bot.sendChat(getBigUpsImage());
 }
 
+function goHamOnGrab(curator_username) {
+    bot.sendChat("Oh shit!!! This Jew @"+curator_username+"just GRABBED this :fire: track!!!!!");
+    var dj_username = bot.getDJ().username;
+    bot.sendChat("Big ups to our man on the booth @"+dj_username+"!!!");
+}
+
+function announceJamAlert() {
+    var dj_username = bot.getDJ().username;
+    bot.sendChat(getJamAlertImage());
+    bot.sendChat(getJamAlertMessage(dj_username));
+}
+
 function getBigUpsImage() {
-    return BIG_UPS_IMAGE_URLS[Math.floor(Math.random() * BIG_UPS_IMAGE_URLS.length)];
+    return getRandomElement(BIG_UPS_IMAGE_URLS);
 }
 
 function getShotsFiredImage() {
-    return SHOTS_FIRED_URLS[Math.floor(Math.random() * SHOTS_FIRED_URLS.length)];
+    return getRandomElement(SHOTS_FIRED_URLS);
+}
+
+function getJamAlertImage() {
+    return getRandomElement(JAM_ALERT_IMAGE_URLS);
 }
 
 function getCompliment() {
-    return complimentArray[Math.floor(Math.random() * complimentArray.length)];
+    return getRandomElement(complimentArray);
+}
+
+function getJamAlertMessage(dj_username) {
+    return getRandomElement(jamAlertMessages).replace("%dj", "@"+dj_username);
+}
+
+function getRandomElement(array) {
+    return array[Math.floor(Math.random() * array.length)];
+}
+
+/** Last play **/
+function announceLastPlayStats(lastPlay) {
+    var last_dj_username = lastPlay.dj.user.username;
+    var track_title = lastPlay.media.title;
+    var track_artist = lastPlay.media.author;
+    var up_count = lastPlay.score.positive;
+    var down_count = lastPlay.score.negative;
+    var curate_count = lastPlay.score.curates;
+
+    bot.sendChat("/me Last play: "+track_artist+" - "+track_title);
+    bot.sendChat("/me "+up_count+":+1: | "+down_count+":-1: | "+curate_count+":pray:")
 }
 
 /** Drink Tracking ish **/
@@ -297,6 +344,8 @@ bot.on('chat', function(data) {
                         break;
             case 'shotsfired': fireShots(data);
                         break;
+            case 'jamalert': announceJamAlert();
+                        break;
             case 'startdrinking': startUserDrinking(data.from.username);
                         break;
             case 'drink': addDrinkForUser(data);
@@ -318,4 +367,19 @@ bot.on('chat', function(data) {
 
     }   
     
+});
+
+
+bot.on('curateUpdate', function(data) {
+    var curator = bot.getUser(data.id);
+    goHamOnGrab(curator.username);
+
+});
+
+bot.on('advance', function(data) {
+    announceLastPlayStats(data.lastPlay);
+
+    if(Math.random() < 0.2) {
+        announceJamAlert();
+    }
 });
