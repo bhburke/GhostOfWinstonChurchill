@@ -381,7 +381,7 @@ bot.on('chat', function(data) {
 });
 
 
-bot.on('curateUpdate', function(data) {
+bot.on('grab', function(data) {
     var curator = bot.getUser(data.id);
     goHamOnGrab(curator.username);
 
@@ -390,7 +390,7 @@ bot.on('curateUpdate', function(data) {
 bot.on('advance', function(data) {
     announceLastPlayStats(data.lastPlay);
 
-    if(Math.random() < 0.2) {
+    if(Math.random() < 0.15) {
         announceJamAlert();
     }
 });
