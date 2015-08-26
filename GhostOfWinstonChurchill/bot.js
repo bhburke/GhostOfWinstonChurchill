@@ -162,6 +162,11 @@ function goHamOnGrab(curator_username) {
 }
 
 function announceJamAlert() {
+    
+    if(bot.getDJ() == null) {
+        return;
+    }
+
     var dj_username = bot.getDJ().username;
     bot.sendChat(getJamAlertImage());
     bot.sendChat(getJamAlertMessage(dj_username));
