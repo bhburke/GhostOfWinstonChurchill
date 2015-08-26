@@ -193,6 +193,10 @@ function getRandomElement(array) {
 
 /** Last play **/
 function announceLastPlayStats(lastPlay) {
+    if(lastPlay.dj == null ) {
+        return;
+    }
+
     var last_dj_username = lastPlay.dj.user.username;
     var track_title = lastPlay.media.title;
     var track_artist = lastPlay.media.author;
