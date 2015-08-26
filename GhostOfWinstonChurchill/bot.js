@@ -25,10 +25,12 @@ var BOT_USER_ID = '6186643'
 var BOT_REFRESH_URL = 'http://bbfresh.com/summon/'
 
 var BIG_UPS_IMAGE_URLS =  ['http://i.imgur.com/EZTfraw.jpg', 'http://i.imgur.com/khQoeOm.jpg', 'http://i.imgur.com/2aN0Xrq.jpg', 
-                            'http://i.imgur.com/QNMiqyS.jpg', 'http://i.imgur.com/MfmHOYb.gif'];
+                            'http://i.imgur.com/QNMiqyS.jpg', 'http://i.imgur.com/MfmHOYb.gif', 'http://i.imgur.com/NOJSeRd.jpg',
+                            'http://i.imgur.com/9Q8q4tW.jpg', 'http://i.imgur.com/u2NYbfL.jpg'];
     
 var SHOTS_FIRED_URLS = ['http://i.imgur.com/hYad5tP.jpg', 'http://i.imgur.com/lGUZpWR.jpg', 'http://i.imgur.com/rfkY7.gif', 
-                            'http://i.imgur.com/EAt5kzd.jpg'];
+                            'http://i.imgur.com/EAt5kzd.jpg', 'http://i.imgur.com/AXkZUts.gif', 'http://i.imgur.com/XOnDU7T.jpg',
+                            'http://i.imgur.com/5CskSle.jpg'];
 
 var JAM_ALERT_IMAGE_URLS = ['http://i.imgur.com/qlBqNCA.gif']
 
