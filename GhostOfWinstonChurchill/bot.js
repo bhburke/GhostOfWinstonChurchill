@@ -202,9 +202,7 @@ function announceLastPlayStats(lastPlay) {
         return;
     }
 
-    console.log(lastPlay);
-
-    var last_dj_username = lastPlay.dj.user.username;
+    var last_dj_username = lastPlay.dj.username;
     var track_title = lastPlay.media.title;
     var track_artist = lastPlay.media.author;
     var up_count = lastPlay.score.positive;
