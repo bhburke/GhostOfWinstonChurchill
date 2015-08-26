@@ -207,7 +207,7 @@ function announceLastPlayStats(lastPlay) {
     var track_artist = lastPlay.media.author;
     var up_count = lastPlay.score.positive;
     var down_count = lastPlay.score.negative;
-    var curate_count = lastPlay.score.curates;
+    var curate_count = lastPlay.score.grabs;
 
     bot.sendChat("/me Last play: "+track_artist+" - "+track_title);
     bot.sendChat("/me "+up_count+":+1: | "+down_count+":-1: | "+curate_count+":pray:")
