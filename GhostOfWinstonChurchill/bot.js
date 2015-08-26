@@ -162,7 +162,7 @@ function goHamOnGrab(curator_username) {
 }
 
 function announceJamAlert() {
-    
+
     if(bot.getDJ() == null) {
         return;
     }
@@ -201,6 +201,8 @@ function announceLastPlayStats(lastPlay) {
     if(lastPlay.dj == null ) {
         return;
     }
+
+    console.log(lastPlay);
 
     var last_dj_username = lastPlay.dj.user.username;
     var track_title = lastPlay.media.title;
