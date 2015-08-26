@@ -156,7 +156,7 @@ function giveBigUps(data) {
 }
 
 function goHamOnGrab(curator_username) {
-    bot.sendChat("Oh shit!!! This Jew @"+curator_username+"just GRABBED this :fire: track!!!!!");
+    bot.sendChat("Oh shit!!! Someone just GRABBED this :fire: track!!!!!");
     var dj_username = bot.getDJ().username;
     bot.sendChat("Big ups to our man on the booth @"+dj_username+"!!!");
 }
